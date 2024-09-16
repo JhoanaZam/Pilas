@@ -1,0 +1,22 @@
+//Este programa se realizo el 09 de Septiembre del 2024
+//Programa Pilas
+package stack;
+import java.util.Scanner;
+public class Stack {
+
+    public static void main(String[] args) {
+        Scanner leer= new Scanner(System.in);
+        System.out.println("Ingrese el tamaño de la pila");
+        int tam=leer.nextInt();
+        int [] pila =new int[tam];
+        
+        for(int i=0; i<tam;i++){
+        System.out.println("Ingresa el dato");
+        pila[i]=leer.nextInt();
+    }
+        for(int i=tam-1;i>=0;i--){
+            System.out.println(pila[i]);
+        }
+    }
+    
+}
