@@ -1,0 +1,38 @@
+//Este programa fue realizado el 09 de septiembre del 2024
+//El programa es un llenado de pila sencillo con un menu.
+package pilamenu;
+import java.util.Scanner;
+public class PilaMenu {
+ 
+    public static void main(String[] args) {
+        Scanner leer=new Scanner(System.in);
+        int tam, nu, res, dato=0;
+        
+        System.out.println("Ingrese el tamaño de la pila");
+        tam=leer.nextInt();
+        System.out.println("1-Ingresar\n2-Mostrar\n3-Salir\n");
+        int []pila=new int[tam];
+        
+        do{     
+            System.out.println("Ingresa el numero segun la acción que desee realizar");
+            nu=leer.nextInt();
+            
+            switch(nu){
+                
+                case 1: System.out.println("Ingresa el dato: ");
+                        pila[dato]=leer.nextInt(); dato++;
+                        break;
+                
+                case 2: for(int i=dato-1; i>=0; i--){
+                    System.out.println(pila[i]+" ");
+                }
+                    break;
+                
+                case 3: System.out.println("Salio del programa"); nu=3; 
+                break;
+            }
+            res=nu;
+        }while(res<3);
+    }    
+}
+        
