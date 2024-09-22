@@ -1,0 +1,112 @@
+//Este programa fue realizado el 11 de Septiembre del 2024 
+//Es un programa que utiliza un menu para el llenado de una pila.
+//El usuario determina el tamano de la pila y segudo de esto le muestra el menu. 
+//El menu contiene 4 opciones agregar, mostrar, eliminar y salir.
+//En la opcion 1. Agregar el usuario tendra que ingresar el primer numero de la pila y asi consecutivamente hasta llenarla.
+//En la opcion 2. Mostrar se mostrara los numeros que el usuario ingreso previamente.
+//En la opcion 3. Eliminar el usuario podra eliminar algun valor de la pila que ya no ocupe.
+//En la opcion 4. Salir el usuario abandonara el programa. 
+package pila;
+import java.util.Scanner;
+public class Pila {
+    
+    public static void main(String[] args) {
+       Scanner leer=new Scanner(System.in);
+       int nu, res=0, dato=0,da=0, in=0;	
+       String tam; 
+       do{
+           System.out.println("Ingrese el tamaño de la pila");
+		tam=leer.next();
+            if(cn(tam)==1) {
+	        int tm=Integer.parseInt(tam);
+		String []pila=new String[tm];
+			
+		System.out.println(" \n1-Agregar \n 2-Mostrar \n 3-Eliminar \n 4-Salir");
+	do {
+            System.out.println("Ingresa un numero del 1-4:\nDigite 5 si desea volver a ver el menu:");
+	    nu=leer.nextInt();
+        		
+	switch(nu) {
+				
+	case 1:
+	    if(dato>pila.length-1){
+	    System.out.println("La pila esta llena");
+	} else {
+	    System.out.println("Ingrese el dato: ");
+	    pila[dato]=leer.next();
+						
+		if(cn(pila[dato])==1) {
+		dato+=1;
+	} else {
+	System.out.println("El caracter '"+pila[dato]+"' no es valido\n");
+	}
+	}	break;
+					
+					
+	case 2:
+	    if(dato==0) {
+	    System.out.println("La pila esta basia \n");
+	    dato=0;
+	    } else {
+	       for(int i=dato-1; i>=0; i-=1) {
+	       System.out.println(" "+pila[i]);
+	    }
+	    dato=dato;
+	    }	break;
+					
+					
+	case 3:
+	    if(dato>=0){
+	    System.out.println("¿Cuantos datos desea eliminar?, Cuenta con "+dato +" datos");
+	    da=leer.nextInt();
+						
+	    if(da<=dato) {
+	    dato=dato-da;
+	    System.out.println("Fueron eliminados usted tiene:\n "+dato +" elementos en la Pila\n");
+	    pila[dato]=(" ");
+	    dato=dato;
+		}
+            else {
+	    System.out.println("No valido, excede la cantidad perimitida\n");
+	}
+	} else {
+	    System.out.println("La pila se quedo basia\n");
+	    dato=0;
+	}	break;
+					
+					
+	case 4: 
+	    System.out.println("Gracias:)"); res=4; break;
+				
+	case 5: 
+            System.out.println("\n1-Agregar \n 2-Mostrar \n 3-Eliminar \n 4-Salir"); break;
+					
+	default:
+	    System.out.println("El valor ingresado no es valido");
+	    System.out.println("¿Desea volver a intentarlo?\n1-Si\n2-No");
+	    res=leer.nextInt(); 
+					
+	    if(res==2) {
+	    res=4;
+	    } else {}	break;
+	    }
+	    }	while(res<4); 
+			}
+		else {
+			System.out.println("El caracter '"+tam +"' no es valido");
+			System.out.println("¿Desea volver a intentarlo?\n1-Si\n2-No");
+			in=leer.nextInt(); 
+			}
+		}while(in==1);
+	}
+
+static int cn(String ne){
+	char lne=ne.charAt(0);
+		if(Character.isDigit(lne)){	
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+}	
