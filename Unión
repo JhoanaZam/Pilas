@@ -1,0 +1,160 @@
+//El siguiente codigo es la claseprincipal
+//Este codigo fue realizado del 25 de Septiembre del 2024
+package unionp;
+import java.util.Scanner;
+
+public class UnionP{
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        
+        System.out.println("*****BIENVENIDO*****");
+        System.out.print("Ingrese el tamaño de las pilas:");
+        int size = leer.nextInt();
+
+        PilaA pilaA = new PilaA(size);
+        PilaB pilaB = new PilaB(size);
+
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Llenar Pila A \n2.Llenar Pila B ");
+            System.out.println("3. Mostrar Pila A \n4. Mostrar Pila B");
+            System.out.println("5. Unir y Mostrar Pilas:");
+            System.out.println("6. Salir");
+            System.out.print("Seleccione una opción: ");
+            int opcion = leer.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    pilaA.llenarPilaA();
+                    break;
+                case 2:
+                    pilaB.llenarPilaB();
+                    break;
+                case 3:
+                    pilaA.mostrarPilaA();
+                    break;
+                case 4:
+                    pilaB.mostrarPilaB();
+                    break;
+                case 5:
+                    unirYMostrarPilasIntercaladas(pilaA, pilaB);
+                    break;
+                case 6:
+                    salir = true;
+                    System.out.println("Salio del programa");
+                    break;
+                default:
+                    System.out.println("La opcion no es valida intente de nuevo");
+                    break;
+            }
+        }
+        leer.close();
+    }
+
+    public static void unirYMostrarPilasIntercaladas(PilaA pilaA, PilaB pilaB) {
+        int[] elementosA = pilaA.obtenerElementosA();
+        String[] elementosB = pilaB.obtenerElementosB();
+
+        Object[] pilaCombinada = new Object[elementosA.length + elementosB.length];
+
+        int indiceA = 0, indiceB = 0, indiceCombinada = 0;
+        while (indiceA < elementosA.length || indiceB < elementosB.length) {
+        
+            if (indiceA < elementosA.length) {
+                pilaCombinada[indiceCombinada++] = elementosA[indiceA++];
+            }
+          
+            if (indiceB < elementosB.length) {
+                pilaCombinada[indiceCombinada++] = elementosB[indiceB++];
+            }
+        }
+
+        System.out.println("\nPila unida:");
+        for (Object elemento : pilaCombinada) {
+            System.out.print(elemento + " ");
+        }
+        System.out.println();
+    }
+}
+
+
+//Este codigo es la Subclase PilaA
+package unionp;
+import java.util.Random;
+
+public class PilaA {
+    private int[] pilaA;
+    private int topeA;
+
+    public PilaA(int size) {
+        pilaA = new int[size];
+        topeA = -1;
+    }
+
+    public void llenarPilaA() {
+        Random random = new Random();
+        for (int i = 0; i < pilaA.length; i++) {
+            pilaA[i] = (random.nextInt(100) + 1) * 6;
+            topeA++;
+        }
+        System.out.println("La pila A esta llena");
+    }
+
+    public void mostrarPilaA() {
+        System.out.print("Elementos de la Pila A: ");
+        for (int i = 0; i <= topeA; i++) {
+            System.out.print(pilaA[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public int[] obtenerElementosA() {
+        return pilaA;
+    }
+}
+
+
+//Este codigo es la subclase PilaB
+package unionp;
+import java.util.Random;
+
+public class PilaB {
+    private String[] pilaB;
+    private int topeB;
+
+    public PilaB(int size) {
+        pilaB = new String[size];
+        topeB = -1; 
+    }
+
+    public void llenarPilaB() {
+        Random random = new Random();
+        for (int i = 0; i < pilaB.length; i++) {
+            pilaB[i] = generarPalabraAleatoria();
+            topeB++;
+        }
+        System.out.println("Pila B esta llena");
+    }
+
+    private String generarPalabraAleatoria() {
+        Random random = new Random();
+        char[] letras = new char[4];
+        for (int i = 0; i < 4; i++) {
+            letras[i] = (char) (random.nextInt(26) + 'a');
+        }
+        return new String(letras);
+    }
+
+    public void mostrarPilaB() {
+        System.out.print("Elementos de la Pila B: ");
+        for (int i = 0; i <= topeB; i++) {
+            System.out.print(pilaB[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public String[] obtenerElementosB() {
+        return pilaB;
+    }
+    }
